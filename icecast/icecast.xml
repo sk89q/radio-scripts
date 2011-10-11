@@ -1,0 +1,85 @@
+<icecast> 
+    <limits> 
+        <clients>100</clients> 
+        <sources>7</sources> 
+        <threadpool>5</threadpool> 
+        <queue-size>524288</queue-size> 
+        <client-timeout>30</client-timeout> 
+        <header-timeout>15</header-timeout> 
+        <source-timeout>10</source-timeout> 
+        <burst-on-connect>1</burst-on-connect> 
+        <burst-size>65535</burst-size> 
+    </limits> 
+ 
+    <authentication> 
+        <source-password>CHANGEME</source-password> 
+        <relay-password>CHANGEME</relay-password> 
+        <admin-user>CHANGEME</admin-user> 
+        <admin-password>CHANGEME!</admin-password> 
+    </authentication> 
+ 
+    <!-- 
+    <directory> 
+        <yp-url-timeout>15</yp-url-timeout> 
+        <yp-url>http://dir.xiph.org/cgi-bin/yp-cgi</yp-url> 
+    </directory> 
+    <directory> 
+        <yp-url-timeout>15</yp-url-timeout> 
+        <yp-url>http://www.oddsock.org/cgi-bin/yp-cgi</yp-url> 
+    </directory> 
+     --> 
+     
+    <hostname>CHANGEME</hostname> 
+ 
+    <!-- You may have multiple <listener> elements --> 
+    <listen-socket> 
+        <port>8000</port> 
+        <!-- <bind-address>127.0.0.1</bind-address> --> 
+    </listen-socket> 
+    <listen-socket> 
+        <port>8001</port> 
+        <!-- <bind-address>127.0.0.1</bind-address> --> 
+        <shoutcast-compat>1</shoutcast-compat>
+    </listen-socket> 
+ 
+    <fileserve>1</fileserve>
+    
+    <mount>
+        <mount-name>/main.aac</mount-name>
+    </mount>
+    <mount>
+        <mount-name>/main-low.aac</mount-name>
+    </mount>
+    <mount>
+        <mount-name>/main.mp3</mount-name>
+    </mount>
+ 
+    <paths> 
+        <!-- basedir is only used if chroot is enabled --> 
+        <basedir>/home/radio/icecast</basedir> 
+        <!-- Note that if <chroot> is turned on below, these paths must both 
+             be relative to the new root, not the original root --> 
+        <logdir>/home/radio/icecast/logs</logdir> 
+        <webroot>/home/radio/icecast/web</webroot> 
+        <adminroot>/home/radio/icecast/admin</adminroot> 
+        <!-- <pidfile>/usr/local/share/icecast/icecast.pid</pidfile> --> 
+        <alias source="/" dest="/index.html"/> 
+    </paths> 
+ 
+    <logging> 
+        <accesslog>access.log</accesslog> 
+        <errorlog>error.log</errorlog> 
+        <!-- <playlistlog>playlist.log</playlistlog> --> 
+        <loglevel>2</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error --> 
+        <logsize>10000</logsize> <!-- Max size of a logfile --> 
+        <logarchive>1</logarchive> 
+    </logging> 
+ 
+    <security> 
+        <!--<chroot>1</chroot> -->
+        <changeowner> 
+            <user>radio</user> 
+            <group>radio</group> 
+        </changeowner> 
+    </security> 
+</icecast> 
